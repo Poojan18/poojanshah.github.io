@@ -70,10 +70,10 @@ nav {
   transition: all var(--transition);
 }
 .nav-logo {
-  font-family: var(--mono);
-  font-size: 0.9rem; font-weight: 600;
-  color: var(--lavender);
-  letter-spacing: 0.02em;
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem; font-weight: 700;
+  color: var(--text-bright);
+  letter-spacing: -0.02em;
 }
 .nav-logo span { color: var(--accent); }
 .nav-links {
@@ -416,9 +416,12 @@ section {
 }
 .exp-card:hover { border-color: var(--border-bright); background: var(--card-hover); }
 .exp-header {
-  display: flex; flex-wrap: wrap; gap: 0.75rem;
+  display: flex; flex-direction: column; gap: 0.6rem;
+  margin-bottom: 0.75rem;
+}
+.exp-header-top {
+  display: flex; flex-wrap: wrap; gap: 0.5rem;
   align-items: flex-start; justify-content: space-between;
-  margin-bottom: 0.5rem;
 }
 .exp-role { font-size: 1.2rem; font-weight: 700; color: var(--text-bright); }
 .exp-company { color: var(--accent); font-weight: 600; }
@@ -440,17 +443,25 @@ section {
   color: #FCD34D;
 }
 .exp-desc { font-size: 0.9rem; color: var(--text-muted); margin: 0.5rem 0 1.25rem; }
-.exp-highlights { display: flex; flex-direction: column; gap: 0.6rem; }
+.exp-highlights { display: flex; flex-direction: column; gap: 0.55rem; }
 .exp-highlight {
-  display: flex; align-items: flex-start; gap: 0.75rem;
-  font-size: 0.875rem; color: var(--text-body); line-height: 1.6;
+  display: block;
+  font-size: 0.875rem; color: var(--text-body); line-height: 1.65;
+  padding-left: 1.25rem;
+  position: relative;
 }
 .exp-highlight::before {
   content: '▸';
-  color: var(--accent); flex-shrink: 0; margin-top: 0.05em;
-  font-size: 0.8rem;
+  color: var(--accent);
+  position: absolute; left: 0; top: 0.1em;
+  font-size: 0.75rem; line-height: 1.65;
 }
-.exp-highlight strong { color: var(--text-bright); }
+.exp-highlight strong { color: var(--text-bright); font-weight: 600; }
+.exp-highlight code {
+  font-family: var(--mono); font-size: 0.8em;
+  color: var(--lavender); background: rgba(165,180,252,0.08);
+  padding: 0.1em 0.35em; border-radius: 4px;
+}
 
 /* ─── PROJECTS ──────────────────────────────────────────── */
 #projects { }
@@ -719,7 +730,7 @@ a:focus-visible, button:focus-visible {
 
 <!-- ─── NAVIGATION ──────────────────────────────────────── -->
 <nav role="navigation" aria-label="Main navigation">
-  <div class="nav-logo"><span>ps</span>://poojanshah</div>
+  <div class="nav-logo"><span>Poojan</span> Shah</div>
   <ul class="nav-links">
     <li><a href="#about">About</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -928,46 +939,53 @@ a:focus-visible, button:focus-visible {
 
     <article class="exp-card fade-up" role="listitem">
       <div class="exp-header">
-        <div>
-          <div class="exp-role">DevOps Engineer</div>
-          <div class="exp-company">Uffizio Technologies</div>
+        <div class="exp-header-top">
+          <div>
+            <div class="exp-role">DevOps Engineer</div>
+            <div class="exp-company">Uffizio Technologies</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-tag">Sept 2025 – Present</span>
+            <span class="exp-tag">Vapi, India</span>
+          </div>
         </div>
         <div class="exp-meta">
-          <span class="exp-tag">Sept 2025 – Present</span>
-          <span class="exp-tag">Vapi, India</span>
           <span class="exp-tag award">🏆 Emergency Response Champion</span>
+          <span class="exp-tag award" style="background:rgba(99,102,241,0.12);border-color:rgba(99,102,241,0.3);color:var(--lavender)">🇦🇪 Dubai × 2 — Government Infrastructure</span>
         </div>
       </div>
       <p class="exp-desc">Core infrastructure owner for the Trakzee GPS platform — a real-time fleet tracking system with enterprise clients globally. First-responder on all P0 production incidents.</p>
       <div class="exp-highlights" role="list">
-        <div class="exp-highlight" role="listitem"><strong>Owned 200+ production Linux servers</strong> running 24×7 — zero unplanned SLA breaches under my watch.</div>
-        <div class="exp-highlight" role="listitem">Diagnosed <strong>CLOSE_WAIT socket accumulation (5k–9.2k sockets)</strong> across 4 servers; traced root cause to missing <code style="font-family:var(--mono);font-size:0.82em;color:var(--lavender)">socket.close()</code> calls in Java COMServer — authored full RCAs with preventive fixes deployed.</div>
-        <div class="exp-highlight" role="listitem">Isolated a <strong>long-running WebController endpoint</strong> using Datadog APM traces — responsible for heap exhaustion and 160+ leaked DB connections on ultrakzee19-web.</div>
-        <div class="exp-highlight" role="listitem">Authored Bash/Python automation that <strong>eliminated 3+ hours of manual effort per deployment cycle</strong> — covering provisioning, health checks, and auto-restart with alerting.</div>
-        <div class="exp-highlight" role="listitem">Configured <strong>TLS termination for Teltonika FMC150 GPS devices</strong> via Nginx stream proxy with GoDaddy SSL on nxgsfleet.com; deployed to air-gapped on-prem server via USB transfer.</div>
-        <div class="exp-highlight" role="listitem">Managed <strong>AWS (EC2, IAM, VPC, S3, SES, CloudTrail)</strong> with continuous cost optimization; configured Azure MySQL Flexible Server privilege grants across 6+ users on a PaaS-restricted environment.</div>
-        <div class="exp-highlight" role="listitem">Designed and built Jenkins, GitLab CI, and GitHub Actions pipelines with <strong>SonarQube & SpotBugs quality gates</strong> embedded at every stage.</div>
-        <div class="exp-highlight" role="listitem"><strong>Produced</strong>: security group docs, server infrastructure specs, deployment flow guides, AWS CloudTrail analysis, and UAE National Cloud Security Policy v2.0 compliance report.</div>
+        <div class="exp-highlight" role="listitem"><strong>200+ Linux servers, 24×7.</strong> Full ownership of the production fleet — zero unplanned SLA breaches under my watch.</div>
+        <div class="exp-highlight" role="listitem"><strong>Socket leak forensics.</strong> Diagnosed CLOSE_WAIT accumulation (5k–9.2k sockets) across 4 servers, traced root cause to missing socket close calls in Java COMServer, and shipped preventive fixes with full RCA documentation.</div>
+        <div class="exp-highlight" role="listitem"><strong>JVM & heap diagnostics.</strong> Used Datadog APM traces to isolate a long-running API endpoint causing heap exhaustion and 160+ leaked DB connections on ultrakzee19-web.</div>
+        <div class="exp-highlight" role="listitem"><strong>3+ hours saved per deploy.</strong> Authored Bash/Python automation covering provisioning, health checks, and auto-restart with alerting — eliminating a recurring manual bottleneck.</div>
+        <div class="exp-highlight" role="listitem"><strong>IoT TLS deployment.</strong> Configured TLS termination for Teltonika FMC150 GPS devices via Nginx stream proxy with a GoDaddy SSL certificate on nxgsfleet.com; delivered to an air-gapped server via USB transfer.</div>
+        <div class="exp-highlight" role="listitem"><strong>Multi-cloud infrastructure.</strong> Managed AWS (EC2, IAM, VPC, S3, SES, CloudTrail) with ongoing cost optimization; configured Azure MySQL Flexible Server privilege grants across 6+ users on a PaaS-restricted environment.</div>
+        <div class="exp-highlight" role="listitem"><strong>CI/CD with quality gates.</strong> Designed Jenkins, GitLab CI, and GitHub Actions pipelines with SonarQube & SpotBugs analysis embedded at every build stage.</div>
+        <div class="exp-highlight" role="listitem"><strong>Documentation authored.</strong> Security group docs, server infrastructure specs, deployment flow guides, AWS CloudTrail security analysis, and UAE National Cloud Security Policy v2.0 compliance report.</div>
       </div>
     </article>
 
     <article class="exp-card fade-up" role="listitem">
       <div class="exp-header">
-        <div>
-          <div class="exp-role">DevOps Intern</div>
-          <div class="exp-company">IAMOPS</div>
-        </div>
-        <div class="exp-meta">
-          <span class="exp-tag">Jan 2025 – July 2025</span>
-          <span class="exp-tag">Remote</span>
+        <div class="exp-header-top">
+          <div>
+            <div class="exp-role">DevOps Intern</div>
+            <div class="exp-company">IAMOPS</div>
+          </div>
+          <div class="exp-meta">
+            <span class="exp-tag">Jan 2025 – July 2025</span>
+            <span class="exp-tag">Remote</span>
+          </div>
         </div>
       </div>
       <p class="exp-desc">Gained hands-on cloud infrastructure experience deploying containerized workloads, hardening web servers, and resolving AWS Security Hub findings.</p>
       <div class="exp-highlights" role="list">
-        <div class="exp-highlight" role="listitem">Deployed a <strong>two-tier web application on AWS ECS using Docker</strong> — integrated Slack real-time alerting for infrastructure events.</div>
-        <div class="exp-highlight" role="listitem">Configured and hardened <strong>Nginx & Apache</strong>; deployed Uptime Kuma monitoring with SSL-terminated Nginx reverse proxy scheduled via Bash/Cron.</div>
-        <div class="exp-highlight" role="listitem">Conducted <strong>AWS cost analysis</strong> and resolved Security Hub vulnerability findings with documented remediation action plans.</div>
-        <div class="exp-highlight" role="listitem">Completed <strong>AWS Cloud Practitioner and Solutions Architect Associate</strong> training via KodeKloud while delivering intern project work.</div>
+        <div class="exp-highlight" role="listitem"><strong>AWS ECS deployment.</strong> Deployed a two-tier web application on AWS ECS using Docker with Slack real-time alerting integrated for infrastructure events.</div>
+        <div class="exp-highlight" role="listitem"><strong>Web server hardening.</strong> Configured and hardened Nginx & Apache; deployed Uptime Kuma monitoring behind an SSL-terminated Nginx reverse proxy managed via Bash/Cron.</div>
+        <div class="exp-highlight" role="listitem"><strong>Cloud cost & security.</strong> Conducted AWS cost analysis and resolved Security Hub vulnerability findings, producing documented remediation action plans.</div>
+        <div class="exp-highlight" role="listitem"><strong>AWS certifications.</strong> Completed Cloud Practitioner and Solutions Architect Associate training via KodeKloud alongside active project delivery.</div>
       </div>
     </article>
 
@@ -1317,7 +1335,7 @@ a:focus-visible, button:focus-visible {
 <footer>
   <div class="footer-inner">
     <div class="footer-copy">
-      <span style="color:var(--accent)">ps</span>://poojanshah · Vapi, Gujarat, India
+      <span style="color:var(--accent)">Poojan Shah</span> · Vapi, Gujarat, India
     </div>
     <div class="footer-copy">
       Poojan Shah &copy; 2025 · All rights reserved
